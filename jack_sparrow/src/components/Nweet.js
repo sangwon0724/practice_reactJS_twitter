@@ -49,6 +49,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
               <button onClick={toggleEditing}>Edit Nweet</button>
             </>
           )}
+          {nweetObj.attachmentUrl && (
+            <img src={nweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
         </>
       )}
     </div>
