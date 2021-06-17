@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { dbService } from "myDatabase";
+import { v4 as uuidv4 } from "uuid";
+import { dbService, storageService } from "myDatabase";
 import Nweet from "components/Nweet";
 
 const Home = ({ userObj }) => {
@@ -17,12 +18,15 @@ const Home = ({ userObj }) => {
     }, []);
     const onSubmit = async (event) => {
         event.preventDefault();
-        await dbService.collection("jack").add({
+        const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+        const response = await fileRef.putString(attachment, "data_url");
+        console.log(response);
+        /* await dbService.collection("jack").add({
           text: nweet,
           createdAt: Date.now(),
           creatorId: userObj.uid
         });
-        setNweet("");
+        setNweet(""); */
     };
     const onChange = (event) => {
       const {
@@ -32,7 +36,7 @@ const Home = ({ userObj }) => {
     };
     const onFileChange = (event) => {
       const {
-        target: { files },
+        target: { files }
       } = event;
       const theFile = files[0];
       const reader = new FileReader();
