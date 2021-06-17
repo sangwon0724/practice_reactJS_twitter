@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { dbService } from "myDatabase";
 
 const Home = () => {
     const [nweet, setNweet] = useState("");
-    const onSubmit = (event) => {
-      event.preventDefault();
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        await dbService.collection("jack").add({
+          nweet,
+          createdAt: Date.now(),
+        });
+        setNweet("");
     };
     const onChange = (event) => {
       const {
