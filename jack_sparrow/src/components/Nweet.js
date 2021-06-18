@@ -28,7 +28,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
     setNewNweet(value);
   };
   return (
-    <divv className="nweet">
+    <div className="nweet">
       {editing ? (
         <>
           <form onSubmit={onSubmit} className="container nweetEdit">
@@ -52,22 +52,21 @@ const Nweet = ({ nweetObj, isOwner }) => {
           <h4>{nweetObj.text}</h4>
           {isOwner && (
             <>
-              <button onClick={onDeleteClick}>Delete Nweet</button>
-              <button onClick={toggleEditing}>Edit Nweet</button>
-            </>
-          )}
-          {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
-          <div className="nweet__actions">
+              <div className="nweet__actions">
               <span onClick={onDeleteClick}>
                 <FontAwesomeIcon icon={faTrash} />
               </span>
               <span onClick={toggleEditing}>
                 <FontAwesomeIcon icon={faPencilAlt} />
               </span>
-          </div>
+            </div>
+            </>
+          )}
+          {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
+          
         </>
       )}
-    </divv>
+    </div>
   );
 };
 
