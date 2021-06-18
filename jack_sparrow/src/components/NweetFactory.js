@@ -26,7 +26,7 @@ const NweetFactory = ({ userObj }) => {
       creatorId: userObj.uid,
       attachmentUrl,
     };
-    await dbService.collection("nweets").add(nweetObj);
+    await dbService.collection("jack").add(nweetObj);
     setNweet("");
     setAttachment("");
   };
